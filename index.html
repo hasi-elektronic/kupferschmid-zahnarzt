@@ -5,658 +5,542 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dr. med. dent. Werner Kupferschmid · Zahnarzt Ludwigsburg</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ivory: #faf8f5;
-    --cream: #f2ede6;
-    --gold: #b8935a;
-    --gold-light: #d4a96a;
-    --dark: #1a1814;
-    --mid: #4a4540;
-    --light: #8a8278;
-    --blue-teal: #2d6e7e;
-    --blue-light: #e8f4f7;
-  }
+:root{
+  --white:#ffffff;
+  --off:#f7f5f2;
+  --cream:#efe9e0;
+  --gold:#c9a96e;
+  --gold2:#dfc08a;
+  --dark:#1c1a18;
+  --dark2:#2e2b27;
+  --mid:#6b6560;
+  --light:#a09990;
+  --teal:#1e5f6e;
+  --teal2:#2a7d90;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--white);color:var(--dark);overflow-x:hidden}
 
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+/* DEMO BANNER */
+.demo{background:var(--teal);color:#fff;text-align:center;padding:.65rem 1rem;font-size:.75rem;letter-spacing:.08em;z-index:999;position:relative}
+.demo a{color:var(--gold2);text-decoration:none;font-weight:600}
 
-  html { scroll-behavior: smooth; }
+/* NAV */
+nav{position:fixed;top:32px;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 4vw;transition:all .4s ease}
+nav.scrolled{top:0;background:rgba(28,26,24,.97);backdrop-filter:blur(14px);box-shadow:0 4px 30px rgba(0,0,0,.25)}
+.nav-logo{display:flex;align-items:center;gap:.9rem}
+.nav-logo-icon{width:38px;height:38px;border:1px solid rgba(201,169,110,.5);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.nav-logo-icon svg{width:20px;height:20px;fill:var(--gold)}
+.nav-logo-name{font-family:'Playfair Display',serif;font-size:.95rem;color:#fff;font-weight:400;line-height:1.25}
+.nav-logo-sub{font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.nav-links{display:flex;gap:2.4rem;list-style:none}
+.nav-links a{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-btn{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:.55rem 1.5rem;font-family:'Jost',sans-serif;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:all .25s}
+.nav-btn:hover{background:var(--gold);color:var(--dark)}
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--ivory);
-    color: var(--dark);
-    overflow-x: hidden;
-  }
+/* HERO */
+.hero{position:relative;height:100vh;min-height:640px;overflow:hidden;display:flex;align-items:flex-end}
+.hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1606811841689-23dfddce3e66?auto=format&fit=crop&w=1800&q=85');background-size:cover;background-position:center 30%;animation:heroZoom 8s ease forwards}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(28,26,24,.88) 0%,rgba(28,26,24,.35) 65%,rgba(28,26,24,.05) 100%)}
+.hero-ov2{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,26,24,.65) 0%,transparent 55%)}
+.hero-content{position:relative;z-index:2;padding:0 8vw 7rem;max-width:750px}
+.hero-tag{display:inline-flex;align-items:center;gap:.7rem;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.6rem;opacity:0;animation:fadeUp .8s .3s forwards}
+.hero-tag::before{content:'';width:28px;height:1px;background:var(--gold)}
+h1.hero-h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,6vw,5.5rem);font-weight:400;line-height:1.1;color:#fff;margin-bottom:1.5rem;opacity:0;animation:fadeUp .8s .5s forwards}
+h1.hero-h1 em{display:block;font-style:italic;color:var(--gold2)}
+.hero-p{font-size:1.05rem;font-weight:300;color:rgba(255,255,255,.72);line-height:1.8;max-width:460px;margin-bottom:2.5rem;opacity:0;animation:fadeUp .8s .7s forwards}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .9s forwards}
+.btn-gold{background:var(--gold);color:var(--dark);padding:.85rem 2.2rem;font-family:'Jost',sans-serif;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:all .25s;font-weight:500;display:inline-block}
+.btn-gold:hover{background:var(--gold2)}
+.btn-ow{border:1px solid rgba(255,255,255,.5);color:#fff;padding:.85rem 2.2rem;font-family:'Jost',sans-serif;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:all .25s;display:inline-block}
+.btn-ow:hover{background:rgba(255,255,255,.1)}
+.hero-stats{position:absolute;bottom:0;right:0;z-index:3;display:flex}
+.hstat{padding:1.8rem 2.2rem;background:rgba(28,26,24,.8);backdrop-filter:blur(10px);border-top:1px solid rgba(201,169,110,.2);text-align:center;min-width:130px}
+.hstat:first-child{border-left:1px solid rgba(201,169,110,.15)}
+.hstat-n{font-family:'Playfair Display',serif;font-size:2.2rem;color:#fff;font-weight:400;display:block;line-height:1}
+.hstat-l{font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-top:.3rem}
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.2rem 4rem;
-    background: rgba(250,248,245,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(184,147,90,0.15);
-    transition: all 0.3s ease;
-  }
+/* TICKER */
+.ticker{background:var(--gold);overflow:hidden;padding:.7rem 0;white-space:nowrap}
+.ticker-inner{display:inline-flex;animation:ticker 28s linear infinite}
+.tick{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dark);padding:0 3rem;font-weight:600}
+.tick::before{content:'✦';margin-right:1.5rem;font-size:.6rem}
 
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    color: var(--dark);
-    line-height: 1.3;
-  }
-  .nav-logo span { display: block; font-style: italic; color: var(--gold); font-size: 0.85rem; }
+/* ABOUT */
+.about{display:grid;grid-template-columns:1fr 1fr;align-items:stretch}
+.about-photo{position:relative;min-height:580px;overflow:hidden}
+.about-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .7s ease}
+.about-photo:hover img{transform:scale(1.04)}
+.about-badge{position:absolute;bottom:2.5rem;left:2.5rem;background:var(--gold);padding:1.2rem 1.6rem}
+.about-badge-n{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--dark);font-weight:400;line-height:1}
+.about-badge-l{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(28,26,24,.65);margin-top:.2rem}
+.about-text{padding:6rem 5vw;background:var(--white)}
+.sec-tag{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.9rem}
+h2.sec-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:400;line-height:1.2;color:var(--dark);margin-bottom:1.8rem}
+h2.sec-title em{font-style:italic;color:var(--teal)}
+.about-p{font-size:.93rem;color:var(--mid);line-height:1.85;margin-bottom:1.2rem;font-weight:300}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.8rem 0}
+.stag{background:var(--cream);padding:.42rem 1rem;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid)}
+.link-arrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);text-decoration:none;margin-top:.5rem;transition:gap .2s}
+.link-arrow:hover{gap:1rem}
 
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a {
-    font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--mid); text-decoration: none; transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--gold); }
+/* LEISTUNGEN */
+.leistungen{background:var(--dark)}
+.leistungen-hd{padding:4.5rem 6vw 3rem;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid rgba(255,255,255,.07);flex-wrap:wrap;gap:1rem}
+.leistungen-hd h2{color:#fff;margin:0}
+.leistungen-hd h2 em{color:var(--gold2)}
+.leistungen-hd p{font-size:.88rem;color:rgba(255,255,255,.42);max-width:300px;line-height:1.7;font-weight:300}
+.leistungen-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.lcard{position:relative;height:370px;overflow:hidden;cursor:default}
+.lcard img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;filter:brightness(.5)}
+.lcard:hover img{transform:scale(1.08);filter:brightness(.35)}
+.lcard-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,26,24,.92) 0%,rgba(28,26,24,.05) 65%)}
+.lcard-body{position:absolute;inset:0;padding:2rem;display:flex;flex-direction:column;justify-content:flex-end}
+.lcard-num{font-family:'Playfair Display',serif;font-size:3.5rem;color:rgba(201,169,110,.12);font-weight:400;line-height:1;margin-bottom:auto}
+.lcard-ico{width:42px;height:42px;border:1px solid rgba(201,169,110,.4);display:flex;align-items:center;justify-content:center;margin-bottom:.9rem;transition:background .3s}
+.lcard:hover .lcard-ico{background:var(--gold)}
+.lcard-ico svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:1.5}
+.lcard-title{font-family:'Playfair Display',serif;font-size:1.25rem;color:#fff;font-weight:400;margin-bottom:.45rem}
+.lcard-desc{font-size:.78rem;color:rgba(255,255,255,.5);line-height:1.6;transform:translateY(6px);opacity:0;transition:all .35s;font-weight:300}
+.lcard:hover .lcard-desc{opacity:1;transform:translateY(0)}
 
-  .nav-cta {
-    background: var(--gold); color: white;
-    padding: 0.6rem 1.6rem; border-radius: 2px;
-    font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
-    text-decoration: none; transition: background 0.2s;
-  }
-  .nav-cta:hover { background: var(--blue-teal); }
+/* ZAHLEN */
+.zahlen{background:var(--teal);display:grid;grid-template-columns:repeat(4,1fr)}
+.zitem{padding:3.5rem 2rem;text-align:center;border-right:1px solid rgba(255,255,255,.12)}
+.zitem:last-child{border-right:none}
+.zn{font-family:'Playfair Display',serif;font-size:3.8rem;font-weight:400;color:#fff;line-height:1;display:block}
+.zl{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.48);margin-top:.5rem}
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: grid; grid-template-columns: 1fr 1fr;
-    align-items: center;
-    padding-top: 80px;
-  }
+/* PHOTOBAND */
+.photoband{display:grid;grid-template-columns:2fr 1fr 1fr;height:380px}
+.pb-item{overflow:hidden;position:relative}
+.pb-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.pb-item:hover img{transform:scale(1.06)}
+.pb-label{position:absolute;bottom:1rem;left:1rem;background:rgba(28,26,24,.7);backdrop-filter:blur(6px);padding:.4rem .85rem;font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:#fff}
 
-  .hero-left {
-    padding: 6rem 4rem 6rem 6rem;
-    display: flex; flex-direction: column; justify-content: center;
-  }
+/* GANZHEITLICH */
+.ganzh{position:relative;min-height:540px;display:flex;align-items:center;overflow:hidden}
+.ganzh-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1800&q=85');background-size:cover;background-position:center;background-attachment:fixed}
+.ganzh-ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(28,26,24,.93) 0%,rgba(28,26,24,.55) 100%)}
+.ganzh-content{position:relative;z-index:2;padding:6rem 8vw;max-width:680px}
+.ganzh-content h2{color:#fff;margin-bottom:1.4rem}
+.ganzh-content h2 em{color:var(--gold2)}
+.ganzh-content p{color:rgba(255,255,255,.62);font-size:.93rem;line-height:1.85;margin-bottom:2rem;font-weight:300}
+.pills{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:2.2rem}
+.pill{padding:.42rem 1rem;border:1px solid rgba(201,169,110,.38);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.68)}
 
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 0.6rem;
-    font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 2rem;
-    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
-  }
-  .hero-badge::before {
-    content: ''; display: block; width: 30px; height: 1px; background: var(--gold);
-  }
+/* TESTIMONIALS */
+.testi{padding:7rem 6vw;background:var(--off)}
+.testi-hd{text-align:center;margin-bottom:4rem}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.tcard{background:#fff;padding:2.5rem;position:relative;box-shadow:0 4px 30px rgba(0,0,0,.06)}
+.tcard-q{font-size:3rem;color:var(--gold);opacity:.25;line-height:1;font-family:'Playfair Display',serif;margin-bottom:.3rem}
+.tcard-stars{color:var(--gold);font-size:.88rem;margin-bottom:.9rem}
+.tcard-text{font-size:.88rem;color:var(--mid);line-height:1.8;margin-bottom:1.4rem;font-weight:300;font-style:italic}
+.tcard-author{display:flex;align-items:center;gap:.8rem;padding-top:1.1rem;border-top:1px solid var(--cream)}
+.tcard-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover}
+.tcard-name{font-size:.8rem;font-weight:500;color:var(--dark)}
+.tcard-when{font-size:.68rem;color:var(--light)}
+.tcard-src{position:absolute;top:1.4rem;right:1.4rem;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--light)}
 
-  .hero-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3rem, 5vw, 5rem);
-    font-weight: 300;
-    line-height: 1.1;
-    color: var(--dark);
-    margin-bottom: 1.5rem;
-    opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
-  }
-  .hero-title em { font-style: italic; color: var(--gold); }
+/* TEAM */
+.team{padding:7rem 6vw}
+.team-hd{margin-bottom:4rem}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem}
+.tmcard{text-align:center}
+.tmphoto{position:relative;overflow:hidden;margin-bottom:1.4rem;aspect-ratio:3/4}
+.tmphoto img{width:100%;height:100%;object-fit:cover;object-position:top;transition:all .45s ease;filter:grayscale(15%)}
+.tmcard:hover .tmphoto img{filter:grayscale(0);transform:scale(1.04)}
+.tmphoto::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(28,26,24,.55),transparent 55%)}
+.tm-name{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:400;margin-bottom:.3rem}
+.tm-role{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
 
-  .hero-sub {
-    font-size: 1rem; font-weight: 300;
-    color: var(--light); line-height: 1.8;
-    max-width: 440px; margin-bottom: 3rem;
-    opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
-  }
+/* TERMIN CTA */
+.cta-bar{background:var(--gold);padding:3.2rem 6vw;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-bar h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.3rem);color:var(--dark);font-weight:400}
+.cta-bar h2 em{font-style:italic}
+.cta-bar p{font-size:.83rem;color:rgba(28,26,24,.6);margin-top:.3rem;font-weight:300}
+.cta-bar-right{display:flex;gap:1.2rem;align-items:center;flex-wrap:wrap}
+.btn-dark{background:var(--dark);color:#fff;padding:.82rem 2rem;font-family:'Jost',sans-serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:background .25s;display:inline-block}
+.btn-dark:hover{background:var(--dark2)}
+.cta-tel{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--dark);font-weight:400;text-decoration:none}
 
-  .hero-actions {
-    display: flex; gap: 1rem; align-items: center;
-    opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
-  }
+/* KONTAKT */
+.kontakt{display:grid;grid-template-columns:1fr 1fr}
+.kmap{position:relative;min-height:520px}
+.kmap iframe{width:100%;height:100%;border:none;filter:grayscale(25%) contrast(1.1)}
+.kinfo{background:var(--dark);padding:5rem 4vw}
+.kinfo h2{color:#fff;margin-bottom:2rem}
+.kinfo h2 em{color:var(--gold2)}
+.krow{display:flex;gap:1.1rem;align-items:flex-start;padding:1.3rem 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.krow:last-of-type{border-bottom:none}
+.kico{width:40px;height:40px;background:rgba(201,169,110,.1);border:1px solid rgba(201,169,110,.22);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.kico svg{width:15px;height:15px;stroke:var(--gold);fill:none;stroke-width:1.5}
+.klabel{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:.22rem}
+.kval{font-size:.9rem;color:#fff;line-height:1.5}
+.kval a{color:#fff;text-decoration:none;transition:color .2s}
+.kval a:hover{color:var(--gold)}
+.oz-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);padding:1.5rem 1.8rem;margin-top:2rem}
+.oz-t{font-size:.63rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem}
+.oz-r{display:flex;justify-content:space-between;padding:.48rem 0;font-size:.84rem;border-bottom:1px solid rgba(255,255,255,.05)}
+.oz-r:last-child{border:none}
+.oz-d{color:rgba(255,255,255,.48);font-weight:300}
+.oz-v{color:#fff}
+.oz-c{color:rgba(255,255,255,.28);font-style:italic;font-weight:300}
 
-  .btn-primary {
-    background: var(--dark); color: white;
-    padding: 1rem 2.4rem; border-radius: 2px;
-    font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
-    text-decoration: none; transition: background 0.25s;
-  }
-  .btn-primary:hover { background: var(--gold); }
+/* FOOTER */
+footer{background:#0f0e0c;padding:3rem 6vw;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;align-items:center}
+.flogo{font-family:'Playfair Display',serif;font-size:1rem;color:#fff;font-weight:400}
+.flogo span{color:var(--gold);font-style:italic}
+.flogo small{display:block;font-family:'Jost',sans-serif;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-top:.3rem}
+.flinks{display:flex;gap:2rem;justify-content:center}
+.flinks a{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s}
+.flinks a:hover{color:var(--gold)}
+.fhasi{text-align:right;font-size:.7rem;color:rgba(255,255,255,.22)}
+.fhasi a{color:var(--gold);opacity:.65;text-decoration:none}
 
-  .btn-ghost {
-    color: var(--mid); font-size: 0.82rem; letter-spacing: 0.08em;
-    text-decoration: none; display: flex; align-items: center; gap: 0.5rem;
-    transition: color 0.2s;
-  }
-  .btn-ghost::after { content: '→'; transition: transform 0.2s; }
-  .btn-ghost:hover { color: var(--gold); }
-  .btn-ghost:hover::after { transform: translateX(4px); }
+/* ANIMATIONS */
+@keyframes heroZoom{from{transform:scale(1.05)}to{transform:scale(1)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.reveal{opacity:0;transform:translateY(28px);transition:all .7s cubic-bezier(.25,.46,.45,.94)}
+.reveal.vis{opacity:1;transform:translateY(0)}
+.reveal-l{opacity:0;transform:translateX(-28px);transition:all .7s cubic-bezier(.25,.46,.45,.94)}
+.reveal-l.vis{opacity:1;transform:translateX(0)}
+.reveal-r{opacity:0;transform:translateX(28px);transition:all .7s cubic-bezier(.25,.46,.45,.94)}
+.reveal-r.vis{opacity:1;transform:translateX(0)}
 
-  .hero-right {
-    position: relative; height: 100vh; overflow: hidden;
-    opacity: 0; animation: fadeIn 1.2s 0.3s forwards;
-  }
-
-  .hero-img-bg {
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, var(--blue-teal) 0%, #1a3a42 100%);
-  }
-
-  .hero-img-pattern {
-    position: absolute; inset: 0; opacity: 0.06;
-    background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0);
-    background-size: 32px 32px;
-  }
-
-  .hero-img-content {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    flex-direction: column; padding: 3rem;
-  }
-
-  .hero-tooth-icon {
-    width: 120px; height: 120px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 2rem;
-  }
-
-  .hero-tooth-icon svg { width: 60px; height: 60px; fill: rgba(255,255,255,0.7); }
-
-  .hero-stat-group {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; width: 100%; max-width: 380px;
-  }
-
-  .hero-stat {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.12);
-    padding: 1.5rem;
-    border-radius: 4px;
-    text-align: center;
-  }
-  .hero-stat-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.5rem; font-weight: 300;
-    color: white; display: block;
-  }
-  .hero-stat-label {
-    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
-    color: rgba(255,255,255,0.5); margin-top: 0.3rem;
-  }
-
-  .hero-scroll {
-    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-    font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-  }
-  .scroll-line {
-    width: 1px; height: 40px;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
-    animation: scrollPulse 2s infinite;
-  }
-
-  /* STRIP */
-  .info-strip {
-    background: var(--dark);
-    display: flex; justify-content: center;
-    gap: 4rem; padding: 1.4rem 4rem;
-    flex-wrap: wrap;
-  }
-  .strip-item {
-    display: flex; align-items: center; gap: 0.8rem;
-    font-size: 0.78rem; letter-spacing: 0.06em; color: rgba(255,255,255,0.7);
-  }
-  .strip-item svg { width: 14px; height: 14px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
-
-  /* LEISTUNGEN */
-  .leistungen {
-    padding: 8rem 6rem;
-    max-width: 1400px; margin: 0 auto;
-  }
-
-  .section-header { margin-bottom: 5rem; }
-  .section-tag {
-    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 1rem; display: block;
-  }
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.2rem, 4vw, 3.5rem);
-    font-weight: 300; line-height: 1.2;
-    color: var(--dark);
-  }
-  .section-title em { font-style: italic; color: var(--gold); }
-
-  .leistungen-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
-  }
-
-  .leistung-card {
-    background: var(--cream);
-    padding: 3rem 2.5rem;
-    transition: all 0.3s ease;
-    position: relative; overflow: hidden;
-    cursor: default;
-  }
-  .leistung-card::before {
-    content: ''; position: absolute; bottom: 0; left: 0;
-    width: 100%; height: 3px;
-    background: var(--gold);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.3s ease;
-  }
-  .leistung-card:hover { background: white; transform: translateY(-4px); }
-  .leistung-card:hover::before { transform: scaleX(1); }
-
-  .card-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3rem; font-weight: 300;
-    color: rgba(184,147,90,0.2);
-    line-height: 1; margin-bottom: 1.5rem;
-  }
-  .card-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem; font-weight: 400;
-    color: var(--dark); margin-bottom: 0.8rem;
-  }
-  .card-text { font-size: 0.85rem; color: var(--light); line-height: 1.7; }
-
-  /* PHILOSOPHY */
-  .philosophy {
-    background: var(--dark);
-    padding: 8rem 6rem;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 8rem;
-    align-items: center;
-  }
-
-  .phil-left {}
-  .phil-quote {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.8rem, 3vw, 2.8rem);
-    font-weight: 300; font-style: italic;
-    color: white; line-height: 1.4;
-    margin-bottom: 2rem;
-  }
-  .phil-quote span { color: var(--gold-light); }
-  .phil-author {
-    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-  }
-
-  .phil-right { display: flex; flex-direction: column; gap: 2rem; }
-  .phil-item {
-    border-left: 1px solid rgba(184,147,90,0.3);
-    padding-left: 1.5rem;
-  }
-  .phil-item-title {
-    font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--gold-light); margin-bottom: 0.5rem;
-  }
-  .phil-item-text { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.7; }
-
-  /* KONTAKT */
-  .kontakt {
-    padding: 8rem 6rem;
-    max-width: 1400px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: start;
-  }
-
-  .kontakt-info {}
-  .kontakt-info .section-tag { margin-bottom: 0.8rem; }
-  .kontakt-info .section-title { margin-bottom: 2.5rem; }
-
-  .kontakt-details { display: flex; flex-direction: column; gap: 1.5rem; }
-  .kontakt-row {
-    display: flex; gap: 1rem; align-items: flex-start;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid rgba(184,147,90,0.15);
-  }
-  .kontakt-row:last-child { border-bottom: none; }
-  .kontakt-icon {
-    width: 36px; height: 36px; background: var(--cream);
-    border-radius: 2px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  }
-  .kontakt-icon svg { width: 15px; height: 15px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
-  .kontakt-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--light); margin-bottom: 0.3rem; }
-  .kontakt-value { font-size: 0.95rem; color: var(--dark); font-weight: 500; }
-  .kontakt-value a { color: var(--dark); text-decoration: none; }
-  .kontakt-value a:hover { color: var(--gold); }
-
-  /* ÖFFNUNGSZEITEN */
-  .oeffnungszeiten {
-    background: var(--cream); padding: 2.5rem; border-radius: 4px;
-  }
-  .oz-title {
-    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 1.5rem;
-  }
-  .oz-row {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 0.7rem 0; border-bottom: 1px solid rgba(0,0,0,0.06);
-    font-size: 0.88rem;
-  }
-  .oz-row:last-child { border-bottom: none; }
-  .oz-day { color: var(--mid); }
-  .oz-time { color: var(--dark); font-weight: 500; }
-  .oz-closed { color: var(--light); font-weight: 400; font-style: italic; }
-
-  .termin-card {
-    background: var(--gold); padding: 2.5rem; border-radius: 4px; margin-top: 1.5rem;
-    text-align: center;
-  }
-  .termin-card p {
-    font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: rgba(255,255,255,0.7); margin-bottom: 0.5rem;
-  }
-  .termin-card a {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem; color: white; text-decoration: none; font-weight: 300;
-    display: block;
-  }
-
-  /* FOOTER */
-  footer {
-    background: var(--dark);
-    padding: 3rem 6rem;
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 1rem;
-  }
-  .footer-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem; color: white; font-weight: 400;
-  }
-  .footer-logo span { color: var(--gold); font-style: italic; }
-  .footer-links { display: flex; gap: 2rem; }
-  .footer-links a {
-    font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s;
-  }
-  .footer-links a:hover { color: var(--gold); }
-  .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
-
-  /* DEMO BANNER */
-  .demo-banner {
-    background: var(--blue-teal);
-    color: white;
-    text-align: center;
-    padding: 0.8rem 1rem;
-    font-size: 0.8rem;
-    letter-spacing: 0.06em;
-    position: relative; z-index: 200;
-  }
-  .demo-banner strong { color: var(--gold-light); }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; } to { opacity: 1; }
-  }
-  @keyframes scrollPulse {
-    0%, 100% { opacity: 0.4; } 50% { opacity: 1; }
-  }
-
-  /* SCROLL REVEAL */
-  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* MOBILE */
-  @media (max-width: 900px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; }
-    .hero-left { padding: 8rem 2rem 4rem; }
-    .hero-right { height: 50vh; }
-    .leistungen { padding: 5rem 2rem; }
-    .leistungen-grid { grid-template-columns: 1fr; gap: 1rem; }
-    .philosophy { grid-template-columns: 1fr; padding: 5rem 2rem; gap: 3rem; }
-    .kontakt { grid-template-columns: 1fr; padding: 5rem 2rem; gap: 3rem; }
-    footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
-    .info-strip { gap: 1.5rem; padding: 1.2rem 1.5rem; }
-  }
+/* MOBILE */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .hero-stats{display:none}
+  .about,.kontakt{grid-template-columns:1fr}
+  .leistungen-grid{grid-template-columns:1fr 1fr}
+  .zahlen{grid-template-columns:1fr 1fr}
+  .photoband{height:auto;grid-template-columns:1fr 1fr}
+  .pb-item{height:200px}
+  .testi-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr 1fr}
+  footer{grid-template-columns:1fr;text-align:center}
+  .fhasi{text-align:center}
+  .cta-bar{flex-direction:column;text-align:center}
+}
+@media(max-width:600px){
+  .leistungen-grid,.team-grid{grid-template-columns:1fr}
+  .photoband{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 
-<!-- DEMO HINWEIS -->
-<div class="demo-banner">
-  ⚡ <strong>Demo-Website</strong> — Erstellt von Hasi Elektronic · <a href="https://hasi-elektronic.de" style="color:var(--gold-light)">www.hasi-elektronic.de</a>
-</div>
+<div class="demo">⚡ <strong>Demo-Website</strong> — Erstellt von <a href="https://hasi-elektronic.de">Hasi Elektronic, Vaihingen/Enz</a></div>
 
-<!-- NAV -->
-<nav>
+<nav id="nav">
   <div class="nav-logo">
-    Dr. med. dent. Werner Kupferschmid
-    <span>Zahnarztpraxis · Ludwigsburg</span>
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 2C9 2 6.5 4.5 6.5 7c0 3.5 1.5 5 1.5 9 0 2 1 4 2.5 4s2-2 3-2 1.5 2 3 2 2.5-2 2.5-4c0-4 1.5-5.5 1.5-9C20.5 4 18 2 15 2c-1.2 0-2.2.4-3 1-.8-.6-1.8-1-3-1z"/></svg>
+    </div>
+    <div>
+      <div class="nav-logo-name">Dr. Werner Kupferschmid</div>
+      <div class="nav-logo-sub">Zahnarzt · Ludwigsburg</div>
+    </div>
   </div>
   <ul class="nav-links">
+    <li><a href="#ueber">Über uns</a></li>
     <li><a href="#leistungen">Leistungen</a></li>
-    <li><a href="#philosophie">Praxis</a></li>
+    <li><a href="#team">Team</a></li>
     <li><a href="#kontakt">Kontakt</a></li>
   </ul>
-  <a href="tel:071419256196" class="nav-cta">Termin vereinbaren</a>
+  <a href="tel:07141925616" class="nav-btn">Termin vereinbaren</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-left">
-    <div class="hero-badge">Zahnarztpraxis Ludwigsburg</div>
-    <h1 class="hero-title">
-      Ihre Zahngesundheit<br>
-      in <em>erfahrenen</em><br>
-      Händen
-    </h1>
-    <p class="hero-sub">
-      Seit über 30 Jahren bieten wir Ihnen ganzheitliche Zahnmedizin mit modernster Technik — vom einfachen Füllungsersatz bis zur komplexen Implantologie.
-    </p>
-    <div class="hero-actions">
-      <a href="tel:07141925616" class="btn-primary">Jetzt anrufen</a>
-      <a href="#leistungen" class="btn-ghost">Unsere Leistungen</a>
+  <div class="hero-bg"></div>
+  <div class="hero-ov"></div>
+  <div class="hero-ov2"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Zahnarztpraxis in Ludwigsburg</div>
+    <h1 class="hero-h1">Ihr Lächeln.<br><em>Unsere Leidenschaft.</em></h1>
+    <p class="hero-p">Ganzheitliche Zahnmedizin auf höchstem Niveau — mit über 30 Jahren Erfahrung, modernster 3D-Diagnostik und einem Herz für jeden Patienten.</p>
+    <div class="hero-btns">
+      <a href="tel:07141925616" class="btn-gold">Jetzt anrufen</a>
+      <a href="#leistungen" class="btn-ow">Unsere Leistungen</a>
     </div>
   </div>
-  <div class="hero-right">
-    <div class="hero-img-bg"></div>
-    <div class="hero-img-pattern"></div>
-    <div class="hero-img-content">
-      <div class="hero-tooth-icon">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <path d="M50 10 C35 10 20 20 20 35 C20 50 25 55 25 70 C25 82 30 90 37 90 C44 90 46 75 50 75 C54 75 56 90 63 90 C70 90 75 82 75 70 C75 55 80 50 80 35 C80 20 65 10 50 10 Z"/>
-        </svg>
-      </div>
-      <div class="hero-stat-group">
-        <div class="hero-stat">
-          <span class="hero-stat-num">30+</span>
-          <span class="hero-stat-label">Jahre Erfahrung</span>
-        </div>
-        <div class="hero-stat">
-          <span class="hero-stat-num">4.3</span>
-          <span class="hero-stat-label">Google Bewertung</span>
-        </div>
-        <div class="hero-stat">
-          <span class="hero-stat-num">GKV</span>
-          <span class="hero-stat-label">& Privatpatienten</span>
-        </div>
-        <div class="hero-stat">
-          <span class="hero-stat-num">3D</span>
-          <span class="hero-stat-label">Diagnostik</span>
-        </div>
-      </div>
-    </div>
-    <div class="hero-scroll">
-      <div class="scroll-line"></div>
-      Mehr entdecken
-    </div>
+  <div class="hero-stats">
+    <div class="hstat"><span class="hstat-n">30<span style="font-size:1.2rem;color:var(--gold2)">+</span></span><span class="hstat-l">Jahre Praxis</span></div>
+    <div class="hstat"><span class="hstat-n">4.3</span><span class="hstat-l">Google Stars</span></div>
+    <div class="hstat"><span class="hstat-n">GKV</span><span class="hstat-l">& Privat</span></div>
+    <div class="hstat"><span class="hstat-n">3D</span><span class="hstat-l">Diagnostik</span></div>
   </div>
 </section>
 
-<!-- INFO STRIP -->
-<div class="info-strip">
-  <div class="strip-item">
-    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-    Wilhelmstraße 54, 71638 Ludwigsburg
-  </div>
-  <div class="strip-item">
-    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-    07141 925616
-  </div>
-  <div class="strip-item">
-    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-    info@zahnarzt-kupferschmid.de
-  </div>
-  <div class="strip-item">
-    <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-    Mo–Fr nach Vereinbarung
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="tick">Implantologie</span><span class="tick">Ästhetische Zahnmedizin</span><span class="tick">3D-Diagnostik</span><span class="tick">Angstfreie Behandlung</span><span class="tick">Ganzheitliche Therapie</span><span class="tick">Prophylaxe</span><span class="tick">Knochenaufbau</span><span class="tick">Sinuslift</span><span class="tick">Hypnose-Behandlung</span>
+    <span class="tick">Implantologie</span><span class="tick">Ästhetische Zahnmedizin</span><span class="tick">3D-Diagnostik</span><span class="tick">Angstfreie Behandlung</span><span class="tick">Ganzheitliche Therapie</span><span class="tick">Prophylaxe</span><span class="tick">Knochenaufbau</span><span class="tick">Sinuslift</span><span class="tick">Hypnose-Behandlung</span>
   </div>
 </div>
 
+<!-- ÜBER DIE PRAXIS -->
+<section class="about" id="ueber">
+  <div class="about-photo reveal-l">
+    <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=900&q=85" alt="Zahnarztpraxis Innenansicht">
+    <div class="about-badge"><div class="about-badge-n">Seit 1991</div><div class="about-badge-l">Implantologie-Spezialist</div></div>
+  </div>
+  <div class="about-text reveal-r">
+    <span class="sec-tag">Über die Praxis</span>
+    <h2 class="sec-title">Zahnmedizin mit<br><em>Herz &amp; Kompetenz</em></h2>
+    <p class="about-p">Dr. med. dent. Werner Kupferschmid führt seit über drei Jahrzehnten eine Praxis, die Patienten in den Mittelpunkt stellt. Mit einem ganzheitlichen Ansatz verbindet er modernste Technologie mit bewährten natürlichen Methoden.</p>
+    <p class="about-p">Unsere Praxis liegt im Herzen von Ludwigsburg — 7 Gehminuten vom Bahnhof, mit eigenem Parkplatz hinter dem Haus (Zufahrt Uhlandstraße). Wir behandeln gesetzlich und privat versicherte Patienten.</p>
+    <div class="skill-tags">
+      <span class="stag">Implantologie</span><span class="stag">3D-Diagnostik</span><span class="stag">Dämmerschlaf</span><span class="stag">Hypnose</span><span class="stag">Ohrakupunktur</span><span class="stag">Homöopathie</span><span class="stag">Sonic Weld</span>
+    </div>
+    <a href="tel:07141925616" class="link-arrow">Jetzt Termin vereinbaren →</a>
+  </div>
+</section>
+
 <!-- LEISTUNGEN -->
 <section class="leistungen" id="leistungen">
-  <div class="section-header reveal">
-    <span class="section-tag">Unsere Leistungen</span>
-    <h2 class="section-title">Ganzheitliche Zahnmedizin<br>auf <em>höchstem Niveau</em></h2>
+  <div class="leistungen-hd">
+    <div>
+      <span class="sec-tag">Was wir bieten</span>
+      <h2 class="sec-title">Unsere <em>Leistungen</em></h2>
+    </div>
+    <p>Von der einfachen Prophylaxe bis zur komplexen Implantologie — alles aus einer Hand.</p>
   </div>
   <div class="leistungen-grid">
-    <div class="leistung-card reveal">
-      <div class="card-num">01</div>
-      <h3 class="card-title">Implantologie</h3>
-      <p class="card-text">Modernste Implantate seit 1991. Knochenaufbau, Sinuslift und Sonic Weld Schalentechnik für dauerhaft feste Zähne.</p>
+    <div class="lcard">
+      <img src="https://images.unsplash.com/photo-1588776814546-1ffbb3cd7b93?auto=format&fit=crop&w=800&q=80" alt="Implantologie">
+      <div class="lcard-ov"></div>
+      <div class="lcard-body">
+        <div class="lcard-num">01</div>
+        <div class="lcard-ico"><svg viewBox="0 0 24 24"><path d="M12 2C9 2 6.5 4.5 6.5 7c0 3.5 1.5 5 1.5 9 0 2 1 4 2.5 4s2-2 3-2 1.5 2 3 2 2.5-2 2.5-4c0-4 1.5-5.5 1.5-9C20.5 4 18 2 15 2"/></svg></div>
+        <div class="lcard-title">Implantologie</div>
+        <div class="lcard-desc">Seit 1991 setzen wir Implantate mit modernster Sonic Weld Technik — dauerhaft, sicher, ästhetisch.</div>
+      </div>
     </div>
-    <div class="leistung-card reveal">
-      <div class="card-num">02</div>
-      <h3 class="card-title">Ästhetische Zahnmedizin</h3>
-      <p class="card-text">Für ein strahlendes Lächeln — von Veneers bis Bleaching, individuell abgestimmt auf Ihre Wünsche.</p>
+    <div class="lcard">
+      <img src="https://images.unsplash.com/photo-1579684453423-f84349ef60b0?auto=format&fit=crop&w=800&q=80" alt="3D Diagnostik">
+      <div class="lcard-ov"></div>
+      <div class="lcard-body">
+        <div class="lcard-num">02</div>
+        <div class="lcard-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg></div>
+        <div class="lcard-title">3D-Diagnostik</div>
+        <div class="lcard-desc">Modernste digitale Bildgebung für präzise Diagnosen und optimale Behandlungsplanung.</div>
+      </div>
     </div>
-    <div class="leistung-card reveal">
-      <div class="card-num">03</div>
-      <h3 class="card-title">3D-Diagnostik</h3>
-      <p class="card-text">Modernste digitale Bildgebung für präzise Diagnosen und optimale Behandlungsplanung.</p>
+    <div class="lcard">
+      <img src="https://images.unsplash.com/photo-1559591937-5f5e0ed9b4e2?auto=format&fit=crop&w=800&q=80" alt="Ästhetik">
+      <div class="lcard-ov"></div>
+      <div class="lcard-body">
+        <div class="lcard-num">03</div>
+        <div class="lcard-ico"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="lcard-title">Ästhetik &amp; Bleaching</div>
+        <div class="lcard-desc">Veneers, Bleaching und kosmetische Korrekturen für Ihr strahlendstes Lächeln.</div>
+      </div>
     </div>
-    <div class="leistung-card reveal">
-      <div class="card-num">04</div>
-      <h3 class="card-title">Angstfreie Behandlung</h3>
-      <p class="card-text">Behandlung in Dämmerschlaf, Hypnose und Ohrakupunktur — damit Zahnarztbesuche entspannt werden.</p>
+    <div class="lcard">
+      <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80" alt="Angstfrei">
+      <div class="lcard-ov"></div>
+      <div class="lcard-body">
+        <div class="lcard-num">04</div>
+        <div class="lcard-ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="lcard-title">Angstfreie Behandlung</div>
+        <div class="lcard-desc">Hypnose, Ohrakupunktur und Dämmerschlaf — für entspannte Behandlungen ohne Angst.</div>
+      </div>
     </div>
-    <div class="leistung-card reveal">
-      <div class="card-num">05</div>
-      <h3 class="card-title">Ganzheitliche Medizin</h3>
-      <p class="card-text">Homöopathische Begleittherapie und Materialverträglichkeitstest für umweltverträgliche Behandlungen.</p>
+    <div class="lcard">
+      <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=800&q=80" alt="Prophylaxe">
+      <div class="lcard-ov"></div>
+      <div class="lcard-body">
+        <div class="lcard-num">05</div>
+        <div class="lcard-ico"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="lcard-title">Prophylaxe &amp; Reinigung</div>
+        <div class="lcard-desc">Professionelle Reinigung, Fluoridierung und Ernährungsberatung für langfristige Gesundheit.</div>
+      </div>
     </div>
-    <div class="leistung-card reveal">
-      <div class="card-num">06</div>
-      <h3 class="card-title">Prophylaxe & Beratung</h3>
-      <p class="card-text">Professionelle Zahnreinigung, Ernährungsberatung und Schwangerschaftsberatung für langfristige Gesundheit.</p>
+    <div class="lcard">
+      <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=800&q=80" alt="Ganzheitlich">
+      <div class="lcard-ov"></div>
+      <div class="lcard-body">
+        <div class="lcard-num">06</div>
+        <div class="lcard-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></div>
+        <div class="lcard-title">Ganzheitliche Medizin</div>
+        <div class="lcard-desc">Homöopathische Begleittherapie und Materialverträglichkeitstest für naturnahe Behandlungen.</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PHILOSOPHY -->
-<section class="philosophy" id="philosophie">
-  <div class="phil-left">
-    <p class="phil-quote">
-      „Jeder Patient verdient <span>individuelle Aufmerksamkeit</span> und das Beste der modernen Zahnmedizin."
-    </p>
-    <p class="phil-author">Dr. med. dent. Werner Kupferschmid</p>
+<!-- ZAHLEN -->
+<div class="zahlen">
+  <div class="zitem reveal"><span class="zn">30<span style="font-size:1.5rem;color:var(--gold2)">+</span></span><div class="zl">Jahre Erfahrung</div></div>
+  <div class="zitem reveal"><span class="zn">4.3<span style="font-size:1.4rem;color:var(--gold2)">★</span></span><div class="zl">Google Bewertung</div></div>
+  <div class="zitem reveal"><span class="zn" style="font-size:2.5rem">GKV+Privat</span><div class="zl">Alle Versicherungen</div></div>
+  <div class="zitem reveal"><span class="zn">1991</span><div class="zl">Implantologie seit</div></div>
+</div>
+
+<!-- PHOTO BAND -->
+<div class="photoband">
+  <div class="pb-item">
+    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1000&q=85" alt="Beratung">
+    <div class="pb-label">Persönliche Beratung</div>
   </div>
-  <div class="phil-right">
-    <div class="phil-item reveal">
-      <div class="phil-item-title">Erfahrung & Expertise</div>
-      <div class="phil-item-text">Über 30 Jahre Erfahrung in der Implantologie und ganzheitlichen Zahnmedizin — Ihr Vertrauen ist unser Antrieb.</div>
+  <div class="pb-item">
+    <img src="https://images.unsplash.com/photo-1516841273335-e39b37888115?auto=format&fit=crop&w=500&q=85" alt="Praxis">
+    <div class="pb-label">Moderne Ausstattung</div>
+  </div>
+  <div class="pb-item">
+    <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&fit=crop&w=500&q=85" alt="Behandlung">
+    <div class="pb-label">Schonende Behandlung</div>
+  </div>
+</div>
+
+<!-- GANZHEITLICH PARALLAX -->
+<section class="ganzh">
+  <div class="ganzh-bg"></div>
+  <div class="ganzh-ov"></div>
+  <div class="ganzh-content reveal">
+    <span class="sec-tag">Unser Ansatz</span>
+    <h2 class="sec-title">Zahnmedizin, die<br><em>den ganzen Menschen</em> sieht</h2>
+    <p>Wir glauben: Zahngesundheit ist Teil des gesamten Wohlbefindens. Deshalb kombinieren wir modernste Medizin mit ganzheitlichen Methoden — individuell abgestimmt auf jeden Patienten.</p>
+    <div class="pills">
+      <span class="pill">Homöopathie</span><span class="pill">Hypnose</span><span class="pill">Ohrakupunktur</span><span class="pill">Dämmerschlaf</span><span class="pill">Materialverträglichkeit</span><span class="pill">Ernährungsberatung</span>
     </div>
-    <div class="phil-item reveal">
-      <div class="phil-item-title">Modernste Technologie</div>
-      <div class="phil-item-text">3D-Diagnostik und digitale Planung für Behandlungen mit höchster Präzision und optimalen Ergebnissen.</div>
+    <a href="tel:07141925616" class="btn-gold">Termin vereinbaren</a>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi">
+  <div class="testi-hd reveal">
+    <span class="sec-tag">Patientenstimmen</span>
+    <h2 class="sec-title">Was unsere Patienten <em>sagen</em></h2>
+  </div>
+  <div class="testi-grid">
+    <div class="tcard reveal">
+      <span class="tcard-src">Jameda</span>
+      <div class="tcard-q">❝</div>
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-text">„Herrn Dr. Kupferschmid merkt man wirklich an, dass er seinen Beruf gerne ausübt. Er nimmt sich Zeit für jeden einzelnen Patienten und strahlt eine angenehme Ruhe aus."</p>
+      <div class="tcard-author">
+        <img class="tcard-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="">
+        <div><div class="tcard-name">Jameda-Rezensentin</div><div class="tcard-when">Vor 3 Monaten · 5/5</div></div>
+      </div>
     </div>
-    <div class="phil-item reveal">
-      <div class="phil-item-title">Ganzheitlicher Ansatz</div>
-      <div class="phil-item-text">Zahnmedizin als Teil der Gesamtgesundheit — wir betrachten Sie als Menschen, nicht nur als Patient.</div>
+    <div class="tcard reveal">
+      <span class="tcard-src">Google</span>
+      <div class="tcard-q">❝</div>
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-text">„Schon lange Patient hier — und ich bin immer wieder begeistert. Das Team ist herzlich, kompetent und geht auf jeden Wunsch ein. Die beste Praxis in Ludwigsburg!"</p>
+      <div class="tcard-author">
+        <img class="tcard-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="">
+        <div><div class="tcard-name">Justine T.</div><div class="tcard-when">Vor 2 Monaten · Google</div></div>
+      </div>
     </div>
-    <div class="phil-item reveal">
-      <div class="phil-item-title">Angstfreie Atmosphäre</div>
-      <div class="phil-item-text">Mit Hypnose, Ohrakupunktur und Behandlung im Dämmerschlaf machen wir auch schwierige Eingriffe entspannt.</div>
+    <div class="tcard reveal">
+      <span class="tcard-src">Gelbe Seiten</span>
+      <div class="tcard-q">❝</div>
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-text">„Endlich ein Zahnarzt, bei dem ich keine Angst mehr habe. Die Behandlung unter Hypnose war unglaublich entspannend. Kann ich nur wärmstens weiterempfehlen."</p>
+      <div class="tcard-author">
+        <img class="tcard-avatar" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=100&q=80" alt="">
+        <div><div class="tcard-name">Michael R.</div><div class="tcard-when">Gelbe Seiten · 5/5</div></div>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- TEAM -->
+<section class="team" id="team">
+  <div class="team-hd reveal">
+    <span class="sec-tag">Unser Team</span>
+    <h2 class="sec-title">Erfahrene Hände,<br><em>warme Herzen</em></h2>
+  </div>
+  <div class="team-grid">
+    <div class="tmcard reveal">
+      <div class="tmphoto"><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=600&q=85" alt="Dr. Kupferschmid"></div>
+      <div class="tm-name">Dr. med. dent. Werner Kupferschmid</div>
+      <div class="tm-role">Zahnarzt &amp; Praxisinhaber · Implantologe seit 1991</div>
+    </div>
+    <div class="tmcard reveal">
+      <div class="tmphoto"><img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&w=600&q=85" alt="Praxisteam"></div>
+      <div class="tm-name">Praxisteam</div>
+      <div class="tm-role">Zahnärztliche Fachangestellte</div>
+    </div>
+    <div class="tmcard reveal">
+      <div class="tmphoto"><img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=600&q=85" alt="Empfang"></div>
+      <div class="tm-name">Unser Empfang</div>
+      <div class="tm-role">Terminvergabe &amp; Patientenbetreuung</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAR -->
+<div class="cta-bar">
+  <div>
+    <h2>Bereit für Ihr <em>neues Lächeln?</em></h2>
+    <p>Rufen Sie uns an oder schreiben Sie uns — wir freuen uns auf Sie.</p>
+  </div>
+  <div class="cta-bar-right">
+    <a href="mailto:info@zahnarzt-kupferschmid.de" class="btn-dark">E-Mail schreiben</a>
+    <a href="tel:07141925616" class="cta-tel">07141 925616</a>
+  </div>
+</div>
 
 <!-- KONTAKT -->
 <section class="kontakt" id="kontakt">
-  <div class="kontakt-info">
-    <span class="section-tag">Kontakt & Anfahrt</span>
-    <h2 class="section-title">Wir freuen uns<br>auf <em>Ihren Besuch</em></h2>
-    <div class="kontakt-details">
-      <div class="kontakt-row">
-        <div class="kontakt-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-        </div>
-        <div>
-          <div class="kontakt-label">Adresse</div>
-          <div class="kontakt-value">Wilhelmstraße 54, 71638 Ludwigsburg<br><small style="color:var(--light);font-size:0.8rem">Ecke Uhlandstraße · 7 Min. vom Bahnhof · Parkplatz hinter dem Haus</small></div>
-        </div>
-      </div>
-      <div class="kontakt-row">
-        <div class="kontakt-icon">
-          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-        </div>
-        <div>
-          <div class="kontakt-label">Telefon</div>
-          <div class="kontakt-value"><a href="tel:07141925616">07141 925616</a></div>
-        </div>
-      </div>
-      <div class="kontakt-row">
-        <div class="kontakt-icon">
-          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        </div>
-        <div>
-          <div class="kontakt-label">E-Mail</div>
-          <div class="kontakt-value"><a href="mailto:info@zahnarzt-kupferschmid.de">info@zahnarzt-kupferschmid.de</a></div>
-        </div>
-      </div>
-    </div>
+  <div class="kmap">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2622.5!2d9.1885!3d48.8935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4799d5c33b9c9b1f%3A0x1234!2sWilhelmstra%C3%9Fe%2054%2C%2071638%20Ludwigsburg!5e0!3m2!1sde!2sde!4v1700000000000" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
-
-  <div>
-    <div class="oeffnungszeiten reveal">
-      <div class="oz-title">Öffnungszeiten</div>
-      <div class="oz-row"><span class="oz-day">Montag</span><span class="oz-time">08:00 – 12:00 · 14:00 – 18:00</span></div>
-      <div class="oz-row"><span class="oz-day">Dienstag</span><span class="oz-time">08:00 – 12:00 · 14:00 – 18:00</span></div>
-      <div class="oz-row"><span class="oz-day">Mittwoch</span><span class="oz-time">08:00 – 12:00</span></div>
-      <div class="oz-row"><span class="oz-day">Donnerstag</span><span class="oz-time">08:00 – 12:00 · 14:00 – 18:00</span></div>
-      <div class="oz-row"><span class="oz-day">Freitag</span><span class="oz-time">08:00 – 13:00</span></div>
-      <div class="oz-row"><span class="oz-day">Samstag – Sonntag</span><span class="oz-closed">Geschlossen</span></div>
+  <div class="kinfo">
+    <span class="sec-tag">Kontakt &amp; Anfahrt</span>
+    <h2 class="sec-title">Wir sind<br><em>für Sie da</em></h2>
+    <div class="krow">
+      <div class="kico"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg></div>
+      <div><div class="klabel">Adresse</div><div class="kval">Wilhelmstraße 54, 71638 Ludwigsburg<br><small style="color:rgba(255,255,255,.3);font-size:.75rem">Ecke Uhlandstr. · Parkplatz hinter dem Haus</small></div></div>
     </div>
-    <div class="termin-card reveal">
-      <p>Terminvereinbarung</p>
-      <a href="tel:07141925616">07141 925616</a>
+    <div class="krow">
+      <div class="kico"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+      <div><div class="klabel">Telefon</div><div class="kval"><a href="tel:07141925616">07141 925616</a></div></div>
+    </div>
+    <div class="krow">
+      <div class="kico"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+      <div><div class="klabel">E-Mail</div><div class="kval"><a href="mailto:info@zahnarzt-kupferschmid.de">info@zahnarzt-kupferschmid.de</a></div></div>
+    </div>
+    <div class="oz-box">
+      <div class="oz-t">Öffnungszeiten</div>
+      <div class="oz-r"><span class="oz-d">Montag</span><span class="oz-v">08:00 – 12:00 · 14:00 – 18:00</span></div>
+      <div class="oz-r"><span class="oz-d">Dienstag</span><span class="oz-v">08:00 – 12:00 · 14:00 – 18:00</span></div>
+      <div class="oz-r"><span class="oz-d">Mittwoch</span><span class="oz-v">08:00 – 12:00</span></div>
+      <div class="oz-r"><span class="oz-d">Donnerstag</span><span class="oz-v">08:00 – 12:00 · 14:00 – 18:00</span></div>
+      <div class="oz-r"><span class="oz-d">Freitag</span><span class="oz-v">08:00 – 13:00</span></div>
+      <div class="oz-r"><span class="oz-d">Sa / So</span><span class="oz-c">Geschlossen</span></div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <div class="footer-logo">
-    Dr. med. dent. Werner Kupferschmid · <span>Zahnarzt</span>
+  <div class="flogo">Dr. med. dent. Werner Kupferschmid · <span>Zahnarzt</span><small>Wilhelmstraße 54 · 71638 Ludwigsburg</small></div>
+  <div class="flinks">
+    <a href="#">Impressum</a><a href="#">Datenschutz</a><a href="#ueber">Über uns</a><a href="#kontakt">Kontakt</a>
   </div>
-  <div class="footer-links">
-    <a href="#">Impressum</a>
-    <a href="#">Datenschutz</a>
-    <a href="#kontakt">Kontakt</a>
-  </div>
-  <div class="footer-copy">© 2025 Zahnarztpraxis Dr. Kupferschmid</div>
+  <div class="fhasi">Demo erstellt von<br><a href="https://hasi-elektronic.de">Hasi Elektronic, Vaihingen/Enz</a></div>
 </footer>
 
 <script>
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // Nav scroll effect
-  window.addEventListener('scroll', () => {
-    document.querySelector('nav').style.boxShadow = 
-      window.scrollY > 50 ? '0 2px 20px rgba(0,0,0,0.08)' : 'none';
-  });
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+nav.classList.add('scrolled');
+const io = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis'); }), {threshold:.1});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach((el,i) => { el.style.transitionDelay = (i%4 * 0.1)+'s'; io.observe(el); });
 </script>
 </body>
 </html>
